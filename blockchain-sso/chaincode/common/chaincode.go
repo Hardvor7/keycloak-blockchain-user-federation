@@ -14,8 +14,8 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/hyperledger/fabric/core/chaincode/shim"
-	sc "github.com/hyperledger/fabric/protos/peer"
+	"github.com/hyperledger/fabric-chaincode-go/shim"
+	sc "github.com/hyperledger/fabric-protos-go/peer"
 )
 
 // CommonContract Define the Common Contract structure, it stores the structure of tracing objects.
