@@ -3,8 +3,10 @@
   "version": "1.0.0",
   "client": {
     "tlsEnable": true,
-    "adminUser": "admin",
-    "adminPassword": "adminpw",
+    "adminCredential": {
+      "id": "admin",
+      "password": "adminpw"
+    },
     "enableAuthentication": true,
     "organization": "Org1",
     "connection": {
@@ -98,8 +100,8 @@
       "tlsCACerts": {
         "path": "/tmp/crypto/peerOrganizations/org1.example.com/peers/peer1.org1.example.com/tls/ca.crt"
       },
-      "url": "grpcs://peer1.org1.example.com:7051",
-      "eventUrl": "grpcs://peer1.org1.example.com:7053",
+      "url": "grpcs://peer1.org1.example.com:8051",
+      "eventUrl": "grpcs://peer1.org1.example.com:8053",
       "grpcOptions": {
         "ssl-target-name-override": "peer1.org1.example.com"
       }
@@ -108,8 +110,8 @@
       "tlsCACerts": {
         "path": "/tmp/crypto/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls/ca.crt"
       },
-      "url": "grpcs://peer0.org2.example.com:7051",
-      "eventUrl": "grpcs://peer0.org2.example.com:7053",
+      "url": "grpcs://peer0.org2.example.com:9051",
+      "eventUrl": "grpcs://peer0.org2.example.com:9053",
       "grpcOptions": {
         "ssl-target-name-override": "peer0.org2.example.com"
       }
@@ -118,8 +120,8 @@
       "tlsCACerts": {
         "path": "/tmp/crypto/peerOrganizations/org2.example.com/peers/peer1.org2.example.com/tls/ca.crt"
       },
-      "url": "grpcs://peer1.org2.example.com:7051",
-      "eventUrl": "grpcs://peer1.org2.example.com:7053",
+      "url": "grpcs://peer1.org2.example.com:10051",
+      "eventUrl": "grpcs://peer1.org2.example.com:10053",
       "grpcOptions": {
         "ssl-target-name-override": "peer1.org2.example.com"
       }

@@ -15,7 +15,7 @@ public class NetworkGenerator {
 	public static void main(String[] args) {
 		String domain = "example.com";
 		String my_ip_adress = "192.168.1.35";
-		String[] clients = { "Org1", "Org2" };
+		String[] clients = { "org1", "org2" };
 
 		File root = new File("").getAbsoluteFile();
 
@@ -28,17 +28,17 @@ public class NetworkGenerator {
 						.orderers("orderer")
 						.peerOrgs(clients).peers("peer0", "peer1")
 						.channels("mychannel").root(new File(root, "first-network/crypto-config"))
-						.url("Org1", "peer0", my_ip_adress)
-						.url("Org1", "peer1", my_ip_adress)
-						.url("Org2", "peer0", my_ip_adress)
-						.url("Org2", "peer1", my_ip_adress)
-						.url("Org1", "ca", my_ip_adress)
-						.url("Org2", "ca", my_ip_adress)
+						.url("org1", "peer0", my_ip_adress)
+						.url("org1", "peer1", my_ip_adress)
+						.url("org2", "peer0", my_ip_adress)
+						.url("org2", "peer1", my_ip_adress)
+						.url("org1", "ca", my_ip_adress)
+						.url("org2", "ca", my_ip_adress)
 						.url("orderer", "*", my_ip_adress)
-						.port("Org1", "peer0", 7051)
-						.port("Org1", "peer1", 8051)
-						.port("Org2", "peer0", 9051)
-						.port("Org2", "peer1", 10051)
+						.port("org1", "peer0", 7051)
+						.port("org1", "peer1", 8051)
+						.port("org2", "peer0", 9051)
+						.port("org2", "peer1", 10051)
 						.build();
 
 				Gson gson = new Gson();
@@ -73,17 +73,19 @@ public class NetworkGenerator {
 						.orderers("orderer")
 						.peerOrgs(clients).peers("peer0", "peer1")
 						.channels("mychannel").root(new File(root, "first-network/crypto-config"))
-						.url("Org1", "peer0", "peer0.Org1.example.com")
-						.url("Org1", "peer1", "peer1.Org1.example.com")
-						.url("Org2", "peer0", "peer0.Org2.example.com")
-						.url("Org2", "peer1", "peer1.Org2.example.com")
-						.url("Org1", "ca", "ca0")
-						.url("Org2", "ca", "ca1")
+						.url("org1", "peer0", "peer0.org1.example.com")
+						.url("org1", "peer1", "peer1.org1.example.com")
+						.url("org2", "peer0", "peer0.org2.example.com")
+						.url("org2", "peer1", "peer1.org2.example.com")
+						.url("org1", "ca", "ca_peerOrg1")
+						.url("org2", "ca", "ca_peerOrg2")
 						.url("orderer", "*", "orderer.example.com")
-						.port("Org1", "peer0", 7051)
-						.port("Org1", "peer1", 8051)
-						.port("Org2", "peer0", 9051)
-						.port("Org2", "peer1", 10051)
+						.port("org1", "peer0", 7051)
+						.port("org1", "peer1", 8051)
+						.port("org2", "peer0", 9051)
+						.port("org2", "peer1", 10051)
+						.port("org1", "ca", 7054)
+						.port("org2", "ca", 8054)
 						.build();
 
 				Gson gson = new Gson();

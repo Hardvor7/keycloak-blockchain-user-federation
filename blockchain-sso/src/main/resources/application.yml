@@ -34,7 +34,7 @@ spring:
       wallet:
         identity: admin
     network:
-      file: ${NETWORK_FILE:network/connection-Org1.yml}
+      file: ${NETWORK_FILE:network/connection-org1.yml}
       name: example-fabric
     # Fabric explorer
     explorer:

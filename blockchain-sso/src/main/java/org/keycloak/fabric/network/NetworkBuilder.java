@@ -184,7 +184,7 @@ public class NetworkBuilder {
 	private JsonObject buildCertificateAuthorityNode(String org) throws NetworkBuilderException {
 		JsonObject node = new JsonObject();
 
-		node.addProperty("url", "https://" + getUrl(org, "ca") + ":7054");
+		node.addProperty("url", "https://" + getUrl(org, "ca") + ":" + getPort(org, "ca", 7054));
 
 		JsonObject grpcOptions = new JsonObject();
 		grpcOptions.addProperty("ssl-target-name-override", "ca." + org + "." + domain);
@@ -305,14 +305,14 @@ public class NetworkBuilder {
 
 		for (String org : peerOrgs) {
 			JsonObject child = buildOrgNode(org, peers.length);
-			node.add(org, child);
+			node.add(capitalize(org), child);
 		}
 		return node;
 	}
 
 	private JsonObject buildOrgNode(String org, int numOfPeers) throws NetworkBuilderException {
 		JsonObject ordererOrgNode = new JsonObject();
-		ordererOrgNode.addProperty("mspid", org + "MSP");
+		ordererOrgNode.addProperty("mspid", capitalize(org) + "MSP");
 
 		JsonArray certificateAuthorities = new JsonArray();
 		certificateAuthorities.add("ca." + org + "." + domain);
@@ -563,7 +563,7 @@ public class NetworkBuilder {
 		connection.add("timeout", timeout);
 		client.add("connection", connection);
 
-		client.addProperty("organization", clientOrg);
+		client.addProperty("organization", capitalize(clientOrg));
 
 		JsonObject credentialStore = new JsonObject();
 		credentialStore.addProperty("path", "tmp/hfc-kvs");
@@ -575,6 +575,12 @@ public class NetworkBuilder {
 		credentialStore.addProperty("wallet", "admin");
 		client.add("credentialStore", credentialStore);
 		return client;
+	}
+
+	private String capitalize(String s) {
+		if (s.length() == 0)
+			return s;
+		return s.substring(0, 1).toUpperCase() + s.substring(1);
 	}
 
 }
