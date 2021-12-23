@@ -1,6 +1,7 @@
 package org.keycloak.fabric.storage.user.service.impl;
 
 
+import org.jboss.logging.Logger;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.http.HttpResponse;
@@ -19,6 +20,7 @@ import java.util.List;
 
 public class UserServiceImpl extends AbstractHttpClient implements UserService {
 
+    private static final Logger logger = Logger.getLogger(UserServiceImpl.class);
     private ObjectMapper objectMapper;
 
     public UserServiceImpl() throws MalformedURLException {
@@ -119,17 +121,25 @@ public class UserServiceImpl extends AbstractHttpClient implements UserService {
     public UserDTO addUser(User user) {
 
         String uri=getBaseUrl()+"/api/v1/users";
+        logger.info("updateUser uri: "+uri);
         HttpResponse response= null;
         try {
             String userString = objectMapper.writeValueAsString(user);
+            logger.info("updateUser userString: "+userString);
             response = post(uri,userString);
+            logger.info("updateUser response: "+response.getStatusLine().getStatusCode());
             if(response.getStatusLine().getStatusCode()==201){
                 UserDTO userDTO = objectMapper.readValue(response.getEntity().getContent(), UserDTO.class);
+                logger.info("updateUser userDTO: "+userDTO);
                 return userDTO;
             }
         } catch (IOException e) {
+            logger.error("updateUser error: "+e.getMessage());
+            logger.error("updateUser error: "+response.getStatusLine().getStatusCode());
             return null;
         }
+        logger.error("updateUser response2: "+response.getStatusLine().getStatusCode());
+        logger.error("HEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEERRRRRRRRRRRRRRREEEEEEEEEE");
         return null;
 
 

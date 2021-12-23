@@ -21,7 +21,7 @@
         <wildfly-hostname>127.0.0.1</wildfly-hostname>
         <wildfly-port>10990</wildfly-port>
         <wildfly-username>admin</wildfly-username>
-        <wildfly-password>root</wildfly-password>
+        <wildfly-password>adminpw</wildfly-password>
     </properties>
 
 
